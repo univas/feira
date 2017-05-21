@@ -1,11 +1,11 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>br.edu.univas.feira</groupId>
-  <artifactId>root</artifactId>
+  <groupId>br.edu.univas</groupId>
+  <artifactId>feira</artifactId>
   <version>1</version>
   <packaging>pom</packaging>
  
   <modules>
-    <module>voting</module>
+    <module>Voting</module>
   </modules>
 </project>
