@@ -69,16 +69,17 @@ angular.module('FairApp', [])
 
     function sendDataAjax(data) {
         $('#mydiv').show();
+        var now = new Date();
         $http({
             method: 'GET',
-            url: '/Voting/rest/vote/saveVotes?' + data
+            url: '/Voting/rest/vote/saveVotes?' + data + '&date=' + now.getTime()
         }).then(function successCallback(response) {
             $('#mydiv').hide();
-            Materialize.toast('Obrigado!', 2000);
+            Materialize.toast(response.data.message, 2000);
 
         }, function errorCallback(response) {
             $('#mydiv').hide();
-            Materialize.toast('Desculpe, erro ao enviar os dados :(', 2000);
+            Materialize.toast(response.data.message, 2000);
         });
     };
 

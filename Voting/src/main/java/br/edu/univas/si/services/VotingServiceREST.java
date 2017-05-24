@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import br.edu.univas.si.model.dao.UserDAO;
 import br.edu.univas.si.model.entities.Course;
@@ -21,15 +22,17 @@ public class VotingServiceREST {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/saveVotes")
-	public String saveVotes(@QueryParam("email") String email,
+	public Response saveVotes(@QueryParam("email") String email,
 			@QueryParam("age") Integer age,
 			@QueryParam("list") final List<String> cources) {
 		
+		br.edu.univas.si.services.Response resp = new br.edu.univas.si.services.Response();
 		try {
 			UserDAO dao = new UserDAO();
 			
 			if(dao.retrieveUser(email) != null) {
-				return "A pesquisa já foi respondida com seu email.";
+				resp.setMessage("A pesquisa já foi respondida com seu email");
+				return Response.ok(resp, MediaType.APPLICATION_JSON).build();
 			}
 			
 			UserInfo user = new UserInfo();
@@ -47,10 +50,12 @@ public class VotingServiceREST {
 				dao.saveCourse(course);
 			}
 			
-			return "Dados salvos com sucesso";
+			resp.setMessage("Dados salvos com sucesso");
+			return Response.ok(resp, MediaType.APPLICATION_JSON).build();
 		} catch(Exception e) {
 			e.printStackTrace();
-			return "Erro ao salvar os dados. Procure a tenda do Sistema.";
+			resp.setMessage("Erro ao salvar os dados. Procure a tenda do Sistema.");
+			return Response.status(Response.Status.NOT_FOUND).entity(resp).build();
 		}
 	}
 
