@@ -10,12 +10,13 @@ angular.module('FairApp', [])
 
     $scope.courses = [
         {"label": 'Administração', "value": '0'},
+        {"label": 'Bioética', "value": '20'},
         {"label": 'Ciências Biológicas', "value": '1'},
         {"label": 'Ciências Contábeis', "value": '2'},
+        {"label": 'Ciências da Linguagem - Pós', "value": '19'},
         {"label": 'Educação Física', "value": '3'},
         {"label": 'Enfermagem', "value": '4'},
         {"label": 'Engenharia de Produção', "value": '5'},
-        {"label": 'Nutrição', "value": '6'},
         {"label": 'Farmácia', "value": '7'},
         {"label": 'Fisioterapia', "value": '8'},
         {"label": 'Gastronomia', "value": '9'},
@@ -24,7 +25,10 @@ angular.module('FairApp', [])
         {"label": 'História', "value": '12'},
         {"label": 'Letras', "value": '13'},
         {"label": 'Medicina', "value": '14'},
+        {"label": 'Mestrado - Saúde', "value": '21'},
+        {"label": 'Nutrição', "value": '6'},
         {"label": 'Pedagogia', "value": '15'},
+        {"label": 'Pibid', "value": '22'},
         {"label": 'Psicologia', "value": '16'},
         {"label": 'Publicidade e Propaganda', "value": '17'},
         {"label": 'Sistemas de Informação', "value": '18'}
@@ -33,15 +37,15 @@ angular.module('FairApp', [])
     $scope.sendData = function() {
         
         if (!$scope.email || $scope.email == '') {
-            Materialize.toast('Por favor, preencha o campo e-mail', 2000);
+            Materialize.toast('Por favor, preencha o campo e-mail', 4000);
 
         } else if (!$scope.age || $scope.age == '') {
-            Materialize.toast('Por favor, preencha o campo idade', 2000);
+            Materialize.toast('Por favor, preencha o campo idade', 4000);
 
         } else {
             var data = getSelectedCheckbox();
             if (data == '') {
-                Materialize.toast('Por favor, selecione ao menos 1 curso', 2000);
+                Materialize.toast('Por favor, selecione ao menos 1 curso', 4000);
             } else {
 
                 data = 'email=' + $scope.email +
@@ -75,11 +79,11 @@ angular.module('FairApp', [])
             url: '/Voting/rest/vote/saveVotes?' + data + '&date=' + now.getTime()
         }).then(function successCallback(response) {
             $('#mydiv').hide();
-            Materialize.toast(response.data.message, 2000);
+            Materialize.toast(response.data.message, 4000);
 
         }, function errorCallback(response) {
             $('#mydiv').hide();
-            Materialize.toast(response.data.message, 2000);
+            Materialize.toast(response.data.message, 4000);
         });
     };
 
