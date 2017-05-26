@@ -37,15 +37,15 @@ angular.module('FairApp', [])
     $scope.sendData = function() {
         
         if (!$scope.email || $scope.email == '') {
-            Materialize.toast('Por favor, preencha o campo e-mail', 4000);
+            Materialize.toast('Por favor, preencha o campo e-mail', 6000);
 
         } else if (!$scope.age || $scope.age == '') {
-            Materialize.toast('Por favor, preencha o campo idade', 4000);
+            Materialize.toast('Por favor, preencha o campo idade', 6000);
 
         } else {
             var data = getSelectedCheckbox();
             if (data == '') {
-                Materialize.toast('Por favor, selecione ao menos 1 curso', 4000);
+                Materialize.toast('Por favor, selecione ao menos 1 curso', 6000);
             } else {
 
                 data = 'email=' + $scope.email +
@@ -79,12 +79,27 @@ angular.module('FairApp', [])
             url: '/Voting/rest/vote/saveVotes?' + data + '&date=' + now.getTime()
         }).then(function successCallback(response) {
             $('#mydiv').hide();
-            Materialize.toast(response.data.message, 4000);
+            Materialize.toast(response.data.message, 6000);
+            cleanFields();
 
         }, function errorCallback(response) {
             $('#mydiv').hide();
-            Materialize.toast(response.data.message, 4000);
+            Materialize.toast(response.data.message, 6000);
         });
+    };
+
+    function cleanFields() {
+    	$scope.email = '';
+    	$scope.age = '';
+
+    	var listOfCheckbox = document.getElementById('courses').getElementsByTagName('input');
+
+        for (var i = 0; i < listOfCheckbox.length; i++) {
+            var checkbox = listOfCheckbox[i];
+            if (checkbox.checked) {
+                checkbox.checked = false;
+            }
+        }
     };
 
 });
