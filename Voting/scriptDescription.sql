@@ -1,0 +1,46 @@
+
+CREATE TABLE description
+(
+   CODIGO VARCHAR(255) NOT NULL  PRIMARY KEY NOT NULL,
+   DESCRICAO varchar(255)
+);
+
+
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Administração', '0');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Bioética', '20');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Ciências Biológicas', '1');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Ciências Contábeis', '2');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Ciências da Linguagem - Pós', '19');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Educação Física', '3');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Enfermagem', '4');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Engenharia de Produção', '5');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Farmácia', '7');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Fisioterapia', '8');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Gastronomia', '9');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Gestão de Produção Industrial', '10');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Gestão de Recursos Humanos', '11');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'História', '12');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Letras', '13');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Medicina', '14');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Mestrado - Saúde', '21');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Nutrição', '6');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Pedagogia', '15');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Pibid', '22');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Psicologia', '16');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Publicidade e Propaganda', '17');
+INSERT INTO DESCRIPTION (DESCRICAO, CODIGO) VALUES ( 'Sistemas de Informação', '18');
+
+
+select u.email, registerDate, age, descricao
+from userinfo u
+join course c on u.email = c.email
+join description d on c.courseName = d.CODIGO;
+
+
+select count(*), descricao
+from userinfo u
+join course c on u.email = c.email
+join description d on c.courseName = d.CODIGO
+group by descricao
+order by count(*);
+
