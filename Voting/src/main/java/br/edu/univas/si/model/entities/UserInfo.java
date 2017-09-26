@@ -25,6 +25,9 @@ public class UserInfo implements Serializable {
 
 	@Column
 	private int age;
+	
+	@Column
+	private boolean permission;
 
 	@Temporal(TemporalType.DATE)
 	private Date registerDate;
@@ -72,6 +75,15 @@ public class UserInfo implements Serializable {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	public boolean getPermission() {
+		return permission;
+	}
+
+	public void setPermission(boolean permission) {
+		this.permission = permission;
+	}
+	
 
 	public Date getRegisterDate() {
 		return registerDate;

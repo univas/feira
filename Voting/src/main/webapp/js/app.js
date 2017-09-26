@@ -7,6 +7,7 @@ angular.module('FairApp', [])
 
     $scope.email = null;
     $scope.age = null;
+    $scope.autorizacao = true;
 
     $scope.courses = [
         {"label": 'Administração', "value": '0'},
@@ -50,6 +51,7 @@ angular.module('FairApp', [])
 
                 data = 'email=' + $scope.email +
                        '&age=' + $scope.age +
+                       '&permission=' + $scope.autorizacao +
                        data;
                 
                 sendDataAjax(data);
@@ -72,18 +74,18 @@ angular.module('FairApp', [])
     };
 
     function sendDataAjax(data) {
-        $('#mydiv').show();
+        $('mydiv').show();
         var now = new Date();
         $http({
             method: 'GET',
             url: '/Voting/rest/vote/saveVotes?' + data + '&date=' + now.getTime()
         }).then(function successCallback(response) {
-            $('#mydiv').hide();
+            $('mydiv').hide();
             Materialize.toast(response.data.message, 6000);
             cleanFields();
 
         }, function errorCallback(response) {
-            $('#mydiv').hide();
+            $('mydiv').hide();
             Materialize.toast(response.data.message, 6000);
         });
     };
@@ -91,6 +93,7 @@ angular.module('FairApp', [])
     function cleanFields() {
     	$scope.email = '';
     	$scope.age = '';
+    	$scope.autorizacao = true;
 
     	var listOfCheckbox = document.getElementById('courses').getElementsByTagName('input');
 

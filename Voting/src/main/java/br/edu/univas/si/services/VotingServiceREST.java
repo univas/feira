@@ -24,20 +24,24 @@ public class VotingServiceREST {
 	@Path("/saveVotes")
 	public Response saveVotes(@QueryParam("email") String email,
 			@QueryParam("age") Integer age,
+			@QueryParam("permission") Boolean permission,
 			@QueryParam("list") final List<String> cources) {
 		
+		System.out.println("Email: " + email + " Permission: " + permission);
+		
 		br.edu.univas.si.services.Response resp = new br.edu.univas.si.services.Response();
+		UserDAO dao = new UserDAO();
 		try {
-			UserDAO dao = new UserDAO();
-			
+			dao.init();
 			if(dao.retrieveUser(email) != null) {
-				resp.setMessage("A pesquisa já foi respondida com seu email");
+				resp.setMessage("A pesquisa já foi respondida com seu email.");
 				return Response.ok(resp, MediaType.APPLICATION_JSON).build();
 			}
 			
 			UserInfo user = new UserInfo();
 			user.setEmail(email);
 			user.setAge(age);
+			user.setPermission(permission);
 			user.setRegisterDate(new Date());
 			
 			dao.saveUser(user);
@@ -50,12 +54,14 @@ public class VotingServiceREST {
 				dao.saveCourse(course);
 			}
 			
-			resp.setMessage("Dados salvos com sucesso");
+			resp.setMessage("Dados salvos com sucesso!");
 			return Response.ok(resp, MediaType.APPLICATION_JSON).build();
 		} catch(Exception e) {
 			e.printStackTrace();
-			resp.setMessage("Erro ao salvar os dados. Procure a tenda do Sistema.");
+			resp.setMessage("Erro ao salvar os dados. Procure o stand do Sistema.");
 			return Response.status(Response.Status.NOT_FOUND).entity(resp).build();
+		} finally {
+			dao.close();
 		}
 	}
 

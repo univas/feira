@@ -19,7 +19,7 @@
 
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Feira Tecnológica</a>
+                <a href="#" class="brand-logo center">Feira de Profissões</a>
             </div>
         </nav>
         
@@ -33,22 +33,33 @@
             <form class="col s12">
                 <div class="row">
                     <div class="col s12">
-                        <p class="flow-text">Informe os dados abaixo e escolha quais foram as tendas que você mais gostou:</p>
+                        <p class="flow-text">Informe o email, a idade e escolha quais foram os stands que você mais gostou:</p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="email" type="email" class="validate" ng-model="email">
-                        <label for="email">E-mail</label>
+                        <label for="email">E-mail:</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="age" type="number" class="validate" ng-model="age">
-                        <label for="age">Idade</label>
+                        <label for="age">Idade:</label>
                     </div>
                 </div>    
+	            <div class="row w3-container">
+	                <div class="input-field col s12 white options">
+	                    <input id="autorizacao" type="checkbox" checked ng-model="autorizacao">
+	                    <label for="autorizacao" class="black-text flow-text">Autorizo a Univás me enviar materiais de divulgação.</label>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="input-field col s12">
+	                    <label class="black-text flow-text"></label>
+	                </div>
+	            </div>
             </form>
         </div>
         
@@ -69,13 +80,13 @@
 
         <div class="row footer">
             <div class="col s12">
-                <p class="flow-text">Qualquer dúvida, comentário, sugestão, procure o stand do curso de Sistemas de Informação!</p>
+                <p class="flow-text">Qualquer dúvida, comentário, sugestão, procure o stand do curso de Sistemas de Informação.</p>
             </div>
         </div>
 
         <div class="fixed-action-btn horizontal" ng-click="sendData()">
             <a class="btn-floating btn-large red" >
-                <i class="material-icons right">Save</i>
+            	<img src="img/ic_send_white_48dp_1x.png" class="center">
             </a>
         </div>
 

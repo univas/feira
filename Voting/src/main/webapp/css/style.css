@@ -25,3 +25,8 @@ div.footer {
     margin-top: -32px;  /* -1 * image height / 2 */
     display: block;     
 }
+
+.center {
+    margin: auto;
+    padding: 5px;
+}

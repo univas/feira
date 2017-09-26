@@ -8,7 +8,11 @@ import br.edu.univas.si.model.entities.UserInfo;
 public class UserDAO {
 
 	// @PersistenceContext(unitName = "unit_app")
-	EntityManager em = HibernateUtil.getSessionFactory().createEntityManager();
+	EntityManager em;
+	
+	public void init() {
+		em = HibernateUtil.getSessionFactory().createEntityManager();
+	}
 
 	public void saveUser(UserInfo user) {
 		em.getTransaction().begin();
@@ -24,6 +28,12 @@ public class UserDAO {
 
 	public UserInfo retrieveUser(String email) {
 		return em.find(UserInfo.class, email);
+	}
+	
+	public void close() {
+		if(em != null) {
+			em.close();
+		}
 	}
 
 }

@@ -2,7 +2,8 @@ CREATE TABLE UserInfo
 (
    email varchar(255) PRIMARY KEY NOT NULL,
    registerDate TIMESTAMP NOT NULL,
-   age NUMERIC NOT NULL
+   age NUMERIC NOT NULL,
+   permission BOOLEAN NOT NULL   
 );
 
 CREATE TABLE Course
